@@ -101,7 +101,9 @@ public:
     bool ContainsStudent(int studIDnum) const
     {
         // returns -1 if not in list
-        return (studentIDList.findData(studIDnum) >= 0);
+        if(!studentIDList.isEmpty())
+            return (studentIDList.findData(studIDnum) >= 0);
+        return -1;
     }
     
     /* ADD */

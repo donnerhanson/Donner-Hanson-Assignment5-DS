@@ -85,7 +85,7 @@ public:
                         if (counter == 0)
                         {
                             ID = StringToInt(str);
-                            if (ID < 1)
+                            while (ID < 1)
                             {
                                 cout << "Stored ID is invalid.\n";
                                 cout << "Student ID - ";
@@ -111,6 +111,13 @@ public:
                         if (counter == 5)
                         {
                             advisorID = StringToInt(str);
+                            while (advisorID < 1 || !facultyTree.contains(advisorID))
+                            {
+                                cout << "Stored Advisor ID is invalid.\nStudent reference to advisor may have been not set\nValid faculty: \n";
+                                facultyTree.printTree();
+                                cout << "Advisor ID - ";
+                                advisorID = EnterID();
+                            }
                             if (facultyTree.contains(advisorID))
                             {
                                 // if the faculty member List has the student  and student tree doesnt contain the student and not a dup

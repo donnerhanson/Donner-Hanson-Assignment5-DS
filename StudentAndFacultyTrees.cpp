@@ -24,6 +24,7 @@ const string FUNCTION_OPTIONS = "1. Print all students and their information (so
 
 const string NO_ADVISORS = "\nNo current Advisors\n";
 const string NO_STUDENTS = "\nNo current Students\n";
+const string AFFECT_REFERENCES_ADV = "\nThis operation may remove references within Advisor tree...\n";
 
 void getEnter()
 {
@@ -302,8 +303,7 @@ void StudentAndFacultyTrees::ChooseFunction()
                     {
                         if (!studentTree.isEmpty())
                         {
-                            cout << "\nThis operation will remove references "
-                            << "within Advisor tree...\n";
+                            cout << AFFECT_REFERENCES_ADV;
                             cout << "\nStudents without advisors must be manually changed during"
                             <<" runtime or at program start...\n";
                             
@@ -459,7 +459,6 @@ void StudentAndFacultyTrees::AddStudent()
     //Student(string name, int ID, string level, string major, int advisorID, double GPA): Person(name,ID, level), major(major), GPA(GPA), advisorID(advisorID){};
     
     
-    currUndo.SaveState(studentTree, facultyTree);
     
     
     string name, level, major;
@@ -632,7 +631,7 @@ void StudentAndFacultyTrees::DeleteStudent(int IDnum)
                 if (facultyTree.get(i).ContainsStudent(IDnum))
                 {
                     // SAVE
-                    currUndo.SaveState(studentTree, facultyTree);
+                    //currUndo.SaveState(studentTree, facultyTree);
                     
                     // copy the member
                     Faculty *temp = new Faculty(facultyTree.get(i));
@@ -760,7 +759,7 @@ void StudentAndFacultyTrees::DeleteFacultyMember(int IDnum)
         if (replaceAdvisorID != -1)
         {
             // SAVE
-            currUndo.SaveState(studentTree, facultyTree);
+            //currUndo.SaveState(studentTree, facultyTree);
             facultyTree.deleter(IDnum);
         }
     }
@@ -856,6 +855,9 @@ void StudentAndFacultyTrees::RemoveStudentFromFacultyRef(int StudentID, int Facu
 //13. Rollback
 void StudentAndFacultyTrees::RollBack()
 {
+    
+    // SOME FUNCTIONS create multiple saves
+    // roll back as needed to get to desired position
     
     if (currUndo.CanUndo())
     {

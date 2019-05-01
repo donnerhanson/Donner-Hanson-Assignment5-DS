@@ -382,8 +382,8 @@ public:
         //if (curr == nullptr)
             return curr->getData();
     }
-    bool isEmpty(){return size <= 0;}
-    unsigned int getSize(){return size;}
+    bool isEmpty() const {return size <= 0;}
+    unsigned int getSize() const {return size;}
 private:
     Node<U>* back;
     Node<U>* front;
