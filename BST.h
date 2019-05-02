@@ -170,7 +170,8 @@ public:
                 // create a case to throw error if the key is duplicate
                 else if ( value == current->key)
                 {
-                    cout << "Duplicate Key...\n----------\n" << value << "\nReassign Key...\n----------\n";
+                    cout << "Duplicate Key...\n----------\n" <<
+                    value << "\nReassign Key...\n----------\n";
                     break;
                 }
                 
@@ -234,7 +235,8 @@ public:
     }
     U deleter(U k)
     {
-        // have to find the correct value to replace the deleted node to maintain the integrity of the tree
+        // have to find the correct value to
+        //  replace the deleted node to maintain the integrity of the tree
         if (!contains(k))
         {
             throw Error("not found\n");
@@ -656,7 +658,8 @@ inline bool BST<Student>::contains(int value) const
 // UPDATE FACULTY STUDENT LIST
 //==================================
 template<>
-inline void BST<Faculty>::_RemoveStudentFromTree(TreeNode<Faculty>* node, int studID)
+inline void BST<Faculty>::
+_RemoveStudentFromTree(TreeNode<Faculty>* node, int studID)
 {
     if (node == nullptr)
         return;

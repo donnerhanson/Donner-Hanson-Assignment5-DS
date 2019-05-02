@@ -43,24 +43,30 @@ using std::getline;
 using std::string;
 
 
-const string FUNCTION_OPTIONS = "1. Print all students and their information (sorted by ascending id #)\n2. Print all faculty and their information (sorted by ascending id #)\n3. Find and display student information given the students id\n4. Find and display faculty information given the faculty id\n5. Given a student’s id, print the name and info of their faculty advisor\n6. Given a faculty id, print ALL the names and info of his/her advisees.\n7. Add a new student\n8. Delete a student given the id\n9. Add a new faculty member\n10. Delete a faculty member given the id.\n11. Change a student’s advisor given the student id and the new faculty id.\n12. Remove an advisee from a faculty member given the ids\n13. Rollback\n14. Exit\n";
+const string FUNCTION_OPTIONS = "1. Print all students and their information "
+"(sorted by ascending id #)\n2. Print all faculty and their information"
+" (sorted by ascending id #)\n3. Find and display student information given"
+" the students id\n4. Find and display faculty information given "
+"the faculty id\n5. Given a student’s id, print the name and info of their "
+"faculty advisor\n6. Given a faculty id, print ALL the names and info of "
+"his/her advisees.\n7. Add a new student\n8. Delete a student given the "
+"id\n9. Add a new faculty member\n10. Delete a faculty member given the "
+"id.\n11. Change a student’s advisor given the student id and the new "
+"faculty id.\n12. Remove an advisee from a faculty member given the "
+"ids\n13. Rollback\n14. Exit\n";
 
 const string NO_ADVISORS = "\nNo current Advisors\n";
 const string NO_STUDENTS = "\nNo current Students\n";
-const string AFFECT_REFERENCES_ADV = "\nThis operation may remove references within Advisor tree...\n";
+const string AFFECT_REFERENCES_ADV = "\nThis operation may remove references"
+" within Advisor tree...\n";
 
 const string ERROR_OUTFILE = "*** error: could not open output file\n";
 const string OPENING_OUT = "Opening File To Overwrite: \n";
-
 const string SAVED = "Save success...\n";
-
 const string ADV_ID = "Advisor ID - ";
 const string STUD_ID = "Student ID -";
-
 const string CONT = "Continue?... (Y/N): ";
-
 const string DNE = " does not exist...\n";
-
 const string INV_ENTRY = "Invalid Entry...\n";
 
 void getEnter()
@@ -86,13 +92,15 @@ void StudentAndFacultyTrees::ChooseFunction()
         {
             switch (choice)
             {
-                    //1. Print all students and their information (sorted by ascending id #)
+                    //1. Print all students and their information
+                    // (sorted by ascending id #)
                 case 1:
                 {
                     PrintAllStudents();
                     break;
                 }
-                    //2. Print all faculty and their information (sorted by ascending id #)
+                    //2. Print all faculty and their information
+                    // (sorted by ascending id #)
                 case 2:
                 {
                     if (!facultyTree.isEmpty())
@@ -103,7 +111,8 @@ void StudentAndFacultyTrees::ChooseFunction()
                     }
                     break;
                 }
-                    //3. Find and display student information given the students id
+                    //3. Find and display student information
+                    // given the students id
                 case 3:
                 {
                     if (!facultyTree.isEmpty())
@@ -125,7 +134,8 @@ void StudentAndFacultyTrees::ChooseFunction()
                     }
                     break;
                 }
-                    //4. Find and display faculty information given the faculty id
+                    //4. Find and display faculty information
+                    // given the faculty id
                 case 4:
                 {
                     if (!facultyTree.isEmpty())
@@ -140,7 +150,8 @@ void StudentAndFacultyTrees::ChooseFunction()
                     }
                     break;
                 }
-                    //5. Given a student’s id, print the name and info of their faculty advisor
+                    //5. Given a student’s id, print the name and info
+                    // of their faculty advisor
                 case 5:
                 {
                     if (!facultyTree.isEmpty())
@@ -153,7 +164,8 @@ void StudentAndFacultyTrees::ChooseFunction()
                         cout << NO_ADVISORS;
                     break;
                 }
-                    //6. Given a faculty id, print ALL the names and info of his/her advisees.
+                    //6. Given a faculty id, print ALL the names and info
+                    // of his/her advisees.
                 case 6:
                 {
                     if (!facultyTree.isEmpty())
@@ -194,12 +206,12 @@ void StudentAndFacultyTrees::ChooseFunction()
                         cout << AFFECT_REFERENCES_ADV;
                         
                         char yesNo = '~';
-                        while (yesNo != 'Y' && yesNo != 'y' && yesNo != 'N' && yesNo != 'n')
+                        while (yesNo != 'Y' && yesNo != 'y'
+                               && yesNo != 'N' && yesNo != 'n')
                         {
                             cout << CONT;
                             cin >> yesNo;
                             cin.clear();
-                            // ignore any letters and whitespace after first in stream
                             cin.ignore(numeric_limits<streamsize>::max(),'\n');
                             if (yesNo == 'Y'||yesNo == 'y')
                             {
@@ -212,15 +224,18 @@ void StudentAndFacultyTrees::ChooseFunction()
                                     cout << STUD_ID << IDnum << DNE;
                                     
                                     
-                                    while (cont != 'Y' && cont != 'y' && cont != 'N' && cont != 'n')
+                                    while (cont != 'Y' && cont != 'y'
+                                           && cont != 'N' && cont != 'n')
                                     {
                                         
                                         cout << CONT;
                                         
                                         cin >> cont;
                                         cin.clear();
-                                        // ignore any letters and whitespace after first in stream
-                                        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                                        cin.ignore(
+                                                   numeric_limits
+                                                   <streamsize>::max(),
+                                                   '\n');
                                     }
                                     if (cont == 'n' || cont == 'N')
                                     {
@@ -289,10 +304,11 @@ void StudentAndFacultyTrees::ChooseFunction()
                     }
                     break;
                 }
-                    //11. Change a student’s advisor given the student id and the new faculty id.
+                    //11. Change a student’s advisor given the student id
+                    //    and the new faculty id.
                 case 11:
                 {
-                    if (!facultyTree.isEmpty())
+                    if (!facultyTree.isEmpty() && !facultyTree.isOnlyOneObject())
                     {
                         if (!studentTree.isEmpty())
                         {
@@ -315,7 +331,8 @@ void StudentAndFacultyTrees::ChooseFunction()
                             }
                             if (!studentTree.contains(studentID))
                             {
-                                cout << "Student" << DNE << "Operation aborted\n";
+                                cout << "Student" << DNE
+                                << "Operation aborted\n";
                                 break;
                             }
                             currUndo.SaveState(studentTree, facultyTree);
@@ -324,6 +341,8 @@ void StudentAndFacultyTrees::ChooseFunction()
                         else
                             cout << NO_STUDENTS;
                     }
+                    else if (facultyTree.isOnlyOneObject())
+                        cout << "Only one advisor... can not reassign...\n";
                     else
                     {
                         cout << NO_ADVISORS;
@@ -333,25 +352,26 @@ void StudentAndFacultyTrees::ChooseFunction()
                     //12. Remove an advisee from a faculty member given the ids
                 case 12:
                 {
-                    
-                    
                     if (!facultyTree.isEmpty())
                     {
                         if (!studentTree.isEmpty())
                         {
                             cout << AFFECT_REFERENCES_ADV;
-                            cout << "\nStudents without advisors must be manually changed during"
+                            cout << "\nStudents without advisors must"
+                            << " be manually changed during"
                             <<" runtime or at program start...\n";
                             
                             char yesNo = '~';
-                            while (yesNo != 'Y' && yesNo != 'y' && yesNo != 'N' && yesNo != 'n')
+                            while (yesNo != 'Y' && yesNo != 'y'
+                                   && yesNo != 'N' && yesNo != 'n')
                             {
                                 cout << CONT;
                                 cin >> yesNo;
                                 cin.clear();
-                                // ignore any letters and whitespace after first in stream
-                                cin.ignore(numeric_limits<streamsize>::max(),'\n');
-                                if (yesNo == 'Y'||yesNo == 'y')
+                                cin.ignore(
+                                           numeric_limits<streamsize>::max(),
+                                           '\n');
+                                if (yesNo == 'Y'|| yesNo == 'y')
                                 {
                                     int studentID = 0, advisorID = 0;
                                     cout << ADV_ID;
@@ -371,15 +391,16 @@ void StudentAndFacultyTrees::ChooseFunction()
                                         advisorID = EnterID();
                                     }
                                     // Will SAVE within function if found
-                                    RemoveStudentFromFacultyRef(studentID, advisorID);
+                                    RemoveStudentFromFacultyRef(studentID,
+                                                                advisorID);
                                 }
                             }
                         }
                         else
                             cout << NO_STUDENTS;
                     }
-                    
-                    
+                    else
+                        cout << NO_ADVISORS;
                     break;
                 }
                     //13. Rollback
@@ -402,7 +423,6 @@ void StudentAndFacultyTrees::ChooseFunction()
                 cin.clear();
                 getEnter();
             }
-            
         }
         else
         {
@@ -410,8 +430,6 @@ void StudentAndFacultyTrees::ChooseFunction()
         }
     }
 }
-
-
 // =====================================================//
 //                   PRINT FUNCTIONS                    //
 //======================================================//
@@ -491,17 +509,9 @@ void StudentAndFacultyTrees::AddStudent()
 {
     // ask for info about new student
     // insert student object
-    // Full Constructor
-    //Student(string name, int ID, string level, string major, int advisorID, double GPA): Person(name,ID, level), major(major), GPA(GPA), advisorID(advisorID){};
-    
-    
-    
-    
     string name, level, major;
     int ID, advisorID;
     double GPA = -1.0;
-    
-    // Full Constructor Student(string name, int ID, string level, string major, int advisorID, double GPA)
     string str;
     cout << STUD_ID;
     ID = EnterID();
@@ -525,7 +535,6 @@ void StudentAndFacultyTrees::AddStudent()
     getline(cin, str);
     cin.clear();
     major = str;
-    
     cout << "Enter Student GPA: ";
     while (GPA <= 0 || GPA >= 5.0)
     {
@@ -544,18 +553,22 @@ void StudentAndFacultyTrees::AddStudent()
     cin.clear();
     while (!(facultyTree.contains(advisorID)))
     {
-        cout << "Faculty member " << advisorID << " does not exist.\nEnter a valid advisor ID.\nValid Faculty Members Listed: \n";
+        cout << "Faculty member " << advisorID << DNE
+        << "Enter a valid advisor ID.\nValid Faculty Members Listed: \n";
         facultyTree.printTree();
         advisorID = EnterID();
         cin.clear();
-        
     }
     cin.clear();
     
     if (facultyTree.contains(advisorID))
     {
-        // if the faculty member List has the student  and student tree doesnt contain the student and not a dup
-        if (facultyTree.get(advisorID).ContainsStudent(ID) && !studentTree.contains(ID) && !(facultyTree.get(advisorID).getStudentIDList().findDuplicateData(ID) > 0))
+        // if the faculty member List has the student
+                // and student tree doesnt contain the student and not a dup
+        if (facultyTree.get(advisorID).ContainsStudent(ID)
+            && !studentTree.contains(ID)
+            && !(facultyTree.get(advisorID).
+                 getStudentIDList().findDuplicateData(ID) > 0))
         {
             // create an advisor copy
             Faculty* updatedNext = new Faculty(facultyTree.get(advisorID));
@@ -568,7 +581,10 @@ void StudentAndFacultyTrees::AddStudent()
             //delete updatedNext; - tree cleans this
         }
         // Faculty member exists and studentTree does not contain ID and there is no duplicate
-        else if (!facultyTree.get(advisorID).ContainsStudent(ID) && !studentTree.contains(ID) && !(facultyTree.get(advisorID).getStudentIDList().findDuplicateData(ID) > 0))
+        else if (!facultyTree.get(advisorID).ContainsStudent(ID)
+                 && !studentTree.contains(ID)
+                 && !(facultyTree.get(advisorID).
+                      getStudentIDList().findDuplicateData(ID) > 0))
         {
             // create an advisor copy
             Faculty* updatedNext = new Faculty(facultyTree.get(advisorID));
@@ -583,12 +599,17 @@ void StudentAndFacultyTrees::AddStudent()
         }
         // -1 = NONE, 0 means one student, 1 means duplicate
         // advisor has dup but student ID OK
-        else if (facultyTree.get(advisorID).getStudentIDList().findDuplicateData(ID) > 0 && !studentTree.contains(ID))
+        else if (
+                 facultyTree.get(advisorID).getStudentIDList().
+                 findDuplicateData(ID) > 0 && !studentTree.contains(ID))
         {
-            cout << "Duplicate ID For Advisor - Enter new ID for " << name << " \n";
-            cout << "Invalid IDs to assign: \n";
+            cout << "Duplicate ID For Advisor - Enter new ID for "
+                << name << " \n";
+            cout << "NON-valid IDs to assign: \n";
             facultyTree.get(advisorID).getStudentIDList().printList();
-            while (facultyTree.get(advisorID).getStudentIDList().findDuplicateData(ID) > 0 && !studentTree.contains(ID))
+            while (facultyTree.get(advisorID).
+                   getStudentIDList().findDuplicateData(ID) > 0
+                   && !studentTree.contains(ID))
                 ID = EnterID();
             // create an advisor copy
             Faculty* updatedNext = new Faculty(facultyTree.get(advisorID));
@@ -600,12 +621,17 @@ void StudentAndFacultyTrees::AddStudent()
             facultyTree.insert(*updatedNext);
             //delete updatedNext; - tree cleans this
         }
-        else if (!(facultyTree.get(advisorID).getStudentIDList().findDuplicateData(ID) > 0) && studentTree.contains(ID)) // duplicate for studentTree
+        else if (!(facultyTree.get(advisorID).
+                   getStudentIDList().findDuplicateData(ID) > 0)
+                 && studentTree.contains(ID)) // duplicate for studentTree
         {
-            cout << "Duplicate Student Tree ID - Enter new ID for " << name << " \n";
+            cout << "Duplicate Student Tree ID - Enter new ID for "
+                << name << " \n";
             facultyTree.get(advisorID).getStudentIDList().printList();
             
-            while (facultyTree.get(advisorID).getStudentIDList().findDuplicateData(ID) > 0 && !studentTree.contains(ID))
+            while (facultyTree.get(advisorID).
+                   getStudentIDList().findDuplicateData(ID) > 0
+                   && !studentTree.contains(ID))
                 ID = EnterID();
             // create an advisor copy
             Faculty* updatedNext = new Faculty(facultyTree.get(advisorID));
@@ -622,7 +648,10 @@ void StudentAndFacultyTrees::AddStudent()
     {
         while (!(facultyTree.contains(advisorID)))
         {
-            cout << "Faculty member " << advisorID << " does not exist.\nEnter a valid advisor ID.\n Valid Faculty Members Listed: \n";
+            cout << "Faculty member " << advisorID
+                    << DNE
+                    << "Enter a valid advisor ID.\n"
+                        " Valid Faculty Members Listed: \n";
             facultyTree.printTree();
             advisorID = EnterID();
             
@@ -651,7 +680,6 @@ void StudentAndFacultyTrees::AddStudent()
 //8. Delete a student given the id
 void StudentAndFacultyTrees::DeleteStudent(int IDnum)
 {
-    
     // find and remove student from faculty list IF advisor exists
     if (!facultyTree.isEmpty() && studentTree.contains(IDnum))
     {
@@ -684,7 +712,6 @@ void StudentAndFacultyTrees::DeleteStudent(int IDnum)
     }
     if (studentTree.contains(IDnum))
         studentTree.deleter(IDnum);
-    
 }
 
 //=============================================
@@ -695,22 +722,23 @@ void StudentAndFacultyTrees::AddFacultyMember()
     string name, occupation, department;
     int ID;
     
-    // Full Constructor Student(string name, int ID, string level, string major, int advisorID, double GPA)
+    // Full Constructor Student(string name, int ID, string level,
+    //                          string major, int advisorID, double GPA)
     string str;
     cout << ADV_ID;
     ID = EnterID();
     cin.clear();
     while (facultyTree.contains(ID))
     {
-        cout << "Faculty member " << ID << " already exists.\nEnter a valid advisor ID.\nInvalid Faculty Members Listed: \n";
+        cout << "Faculty member " << ID
+                << " already exists.\nEnter a valid advisor ID.\n"
+                   "Invalid Faculty Members Listed: \n";
         facultyTree.printTree();
         ID = EnterID();
         cin.clear();
-        
     }
     // SAVE - Faculty ID is open
     currUndo.SaveState(studentTree, facultyTree);
-    
     cout << "Enter Advisor Name: ";
     getline(cin, str);
     cin.clear();
@@ -723,10 +751,6 @@ void StudentAndFacultyTrees::AddFacultyMember()
     getline(cin, str);
     cin.clear();
     department = str;
-    
-    
-    
-    // ============================================//
     
     if (!facultyTree.contains(ID))
     {
@@ -774,7 +798,9 @@ void StudentAndFacultyTrees::DeleteFacultyMember(int IDnum)
             // a teacher has been chosen or the operation aborted
             if(replaceAdvisorID != -1)
             {
-                DoublyLinkedList<int>* studIDs = new DoublyLinkedList<int>(facultyTree.get(IDnum).getStudentIDList());
+                DoublyLinkedList<int>* studIDs =
+                new DoublyLinkedList<int>(facultyTree.get(IDnum).
+                                          getStudentIDList());
                 int DLLsize;
                 DLLsize = studIDs->getSize() - 1;
                 while (DLLsize != -1)
@@ -784,7 +810,6 @@ void StudentAndFacultyTrees::DeleteFacultyMember(int IDnum)
                     // THIS OPERATION WILL SAVE
                     ChangeStudentAdvisor(ID, replaceAdvisorID);
                     --DLLsize;
-                    
                 }
                 delete studIDs;
                 
@@ -813,7 +838,8 @@ void StudentAndFacultyTrees::ChangeStudentAdvisor(int StudentID, int FacultyID)
         // get previous advisors ID
         int studPrevAdvisorID = studentTree.get(StudentID).getAdvisorID();
         // REMOVE PREV
-        if (facultyTree.contains(studPrevAdvisorID) && studPrevAdvisorID != FacultyID)
+        if (facultyTree.contains(studPrevAdvisorID)
+            && studPrevAdvisorID != FacultyID)
         {
             
             // create a temp copy
@@ -844,8 +870,6 @@ void StudentAndFacultyTrees::ChangeStudentAdvisor(int StudentID, int FacultyID)
             studentTree.insert(*updatedStudent);
         }
         // else the student already exists in that list
-        
-        
     }
 }
 //=============================================
@@ -853,15 +877,11 @@ void StudentAndFacultyTrees::ChangeStudentAdvisor(int StudentID, int FacultyID)
 //12. Remove an advisee from a faculty member given the ids
 void StudentAndFacultyTrees::RemoveStudentFromFacultyRef(int StudentID, int FacultyID)
 {
-    // warn student will not have an advisor
-    // returns false if faculty tree empty or if student isnt in the faculty list
-    
-    
-    
     if (studentInFacultyList(StudentID, FacultyID))
     {
         currUndo.SaveState(studentTree, facultyTree);
-        cout << "Removing Student ID: " << StudentID << " from faculty member ID: " << FacultyID << "\n";
+        cout << "Removing Student ID: " << StudentID
+                << " from faculty member ID: " << FacultyID << "\n";
         // copy the member
         Faculty *temp = new Faculty(facultyTree.get(FacultyID));
         // remove the student from the member
@@ -876,8 +896,6 @@ void StudentAndFacultyTrees::RemoveStudentFromFacultyRef(int StudentID, int Facu
         tempStud->setAdvisor(-1);
         studentTree.deleter(StudentID);
         studentTree.insert(*tempStud);
-        
-        
     }
     else
     {
@@ -889,10 +907,10 @@ void StudentAndFacultyTrees::RemoveStudentFromFacultyRef(int StudentID, int Facu
 //13. Rollback
 void StudentAndFacultyTrees::RollBack()
 {
-    
+    cout << "Rolling Back...\n";
+    cout << "Restored Trees:\n";
     // SOME FUNCTIONS create multiple saves
     // roll back as needed to get to desired position
-    
     if (currUndo.CanUndo())
     {
         facultyTree.EraseTree();
@@ -933,7 +951,6 @@ void StudentAndFacultyTrees::Exit()
     }
     else if(outputStud.is_open())
     {
-        
         outputStud << studentTree.TreeToString();
         outputStud.close();
         cout << SAVED;

@@ -31,7 +31,8 @@ public:
     // set ptr to NULL/nullptr/0
     Node(): data(0), next(NULL), prev (NULL){};
     Node(U data): data(data), next(0), prev(0){}; // overloaded
-    Node(Node<U> *data, Node<U> *n, Node<U>*p): data(data->getData()), next(n), prev(p){};
+    Node(Node<U> *data, Node<U> *n, Node<U>*p):
+                data(data->getData()), next(n), prev(p){};
     // https://stackoverflow.com/questions/13668252/how-do-you-perform-a-deep-copy-on-a-doubly-linked-list
     Node(const Node<U> &other)
     {

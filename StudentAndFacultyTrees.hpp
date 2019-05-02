@@ -101,7 +101,8 @@ public:
                     int ID = 0, advisorID = 0;
                     double GPA = 0;
                     
-                    // Full Constructor Student(string name, int ID, string level, string major, int advisorID, double GPA)
+                    // Full Constructor Student(string name, int ID,
+                    //  string level, string major, int advisorID, double GPA)
                     int counter(0);
                     string str;
                     while (getline(inFileStream, str)) {
@@ -138,7 +139,9 @@ public:
                             advisorID = StringToInt(str);
                             while (advisorID < 1 || !facultyTree.contains(advisorID))
                             {
-                                cout << "Stored Advisor ID is invalid.\nStudent reference to advisor may have been not set\nValid faculty: \n";
+                                cout << "Stored Advisor ID is invalid.\n"
+                                        "Student reference to advisor may have"
+                                        " been not set\nValid faculty: \n";
                                 facultyTree.printTree();
                                 cout << "Advisor ID - ";
                                 advisorID = EnterID();
@@ -146,7 +149,12 @@ public:
                             if (facultyTree.contains(advisorID))
                             {
                                 // if the faculty member List has the student  and student tree doesnt contain the student and not a dup
-                                if (facultyTree.get(advisorID).ContainsStudent(ID) && !studentTree.contains(ID) && !(facultyTree.get(advisorID).getStudentIDList().findDuplicateData(ID) > 0))
+                                if (facultyTree.get(advisorID).
+                                    ContainsStudent(ID)
+                                    && !studentTree.contains(ID)
+                                    && !(facultyTree.get(advisorID).
+                                         getStudentIDList().
+                                         findDuplicateData(ID) > 0))
                                 {
                                     // create an advisor copy
                                     Faculty* updatedNext = new Faculty(facultyTree.get(advisorID));
@@ -159,10 +167,16 @@ public:
                                     //delete updatedNext; - tree cleans this
                                 }
                                 // Faculty member exists and wasn't updated - assign
-                                else if (!facultyTree.get(advisorID).ContainsStudent(ID) && !studentTree.contains(ID) && !(facultyTree.get(advisorID).getStudentIDList().findDuplicateData(ID) > 0))
+                                else if (!facultyTree.get(advisorID).
+                                         ContainsStudent(ID)
+                                         && !studentTree.contains(ID)
+                                         && !(facultyTree.get(advisorID).
+                                              getStudentIDList().
+                                              findDuplicateData(ID) > 0))
                                 {
                                     
-                                    if (!facultyTree.get(advisorID).ContainsStudent(ID))
+                                    if (!facultyTree.get(advisorID).
+                                        ContainsStudent(ID))
                                     {
                                         facultyTree.RemoveStudentFromTree(ID);
                                         
@@ -175,17 +189,24 @@ public:
                                     facultyTree.deleter(advisorID);
                                     // insert new faculty member
                                     facultyTree.insert(*updatedNext);
-                                    
                                     //delete updatedNext; - tree cleans this
                                 }
                                 // -1 = NONE, 0 means one student, 1 means duplicate
                                 // advisor has dup but student ID OK
-                                else if (facultyTree.get(advisorID).getStudentIDList().findDuplicateData(ID) > 0 && !studentTree.contains(ID))
+                                else if (facultyTree.get(advisorID).
+                                         getStudentIDList().
+                                         findDuplicateData(ID) > 0
+                                         && !studentTree.contains(ID))
                                 {
-                                    cout << "Duplicate ID For Advisor - Enter new ID for " << name << " \n";
+                                    cout << "Duplicate ID For Advisor -"
+                                        " Enter new ID for " << name << " \n";
                                     cout << "Invalid IDs to assign: \n";
-                                    facultyTree.get(advisorID).getStudentIDList().printList();
-                                    while (facultyTree.get(advisorID).getStudentIDList().findDuplicateData(ID) > 0 && !studentTree.contains(ID))
+                                    facultyTree.get(advisorID).
+                                    getStudentIDList().printList();
+                                    while (facultyTree.get(advisorID).
+                                           getStudentIDList().
+                                           findDuplicateData(ID) > 0
+                                           && !studentTree.contains(ID))
                                         ID = EnterID();
                                     // create an advisor copy
                                     Faculty* updatedNext = new Faculty(facultyTree.get(advisorID));
@@ -197,12 +218,19 @@ public:
                                     facultyTree.insert(*updatedNext);
                                     //delete updatedNext; - tree cleans this
                                 }
-                                else if (!(facultyTree.get(advisorID).getStudentIDList().findDuplicateData(ID) > 0) && studentTree.contains(ID)) // duplicate for studentTree
+                                else if (!(facultyTree.get(advisorID).
+                                           getStudentIDList().
+                                           findDuplicateData(ID) > 0)
+                                         && studentTree.contains(ID)) // duplicate for studentTree
                                 {
-                                    cout << "Duplicate Student Tree ID - Enter new ID for " << name << " \n";
-                                    facultyTree.get(advisorID).getStudentIDList().printList();
-                                    
-                                    while (facultyTree.get(advisorID).getStudentIDList().findDuplicateData(ID) > 0 && !studentTree.contains(ID))
+                                    cout << "Duplicate Student Tree ID"
+                                    " - Enter new ID for " << name << " \n";
+                                    facultyTree.get(advisorID).
+                                    getStudentIDList().printList();
+                                    while (facultyTree.get(advisorID)
+                                           .getStudentIDList().
+                                           findDuplicateData(ID) > 0
+                                           && !studentTree.contains(ID))
                                         ID = EnterID();
                                     // create an advisor copy
                                     Faculty* updatedNext = new Faculty(facultyTree.get(advisorID));
@@ -222,7 +250,6 @@ public:
                                     cout << "Faculty member " << advisorID << " does not exist.\nEnter a valid advisor ID.\n";
                                     facultyTree.printTree();
                                     advisorID = EnterID();
-                                    
                                 }
                                 // create an advisor copy
                                 Faculty* updatedNext = new Faculty(facultyTree.get(advisorID));
@@ -233,10 +260,7 @@ public:
                                 // insert new faculty member
                                 facultyTree.insert(*updatedNext);
                                 //delete updatedNext; - tree cleans this
-                                
-                                
                             }
-                            
                             Student* stud = new Student (name, ID, level, major, advisorID, GPA);
                             studentTree.insert(*stud);
                             // TEST - see if lists do cleanup
@@ -247,27 +271,22 @@ public:
                         {
                             counter = 0;
                         }
-                        
-                        
-                        //name >> ID >> level >> major >> advisorID >> GPA
                     }
-                    
                     if (inFileStream.bad())
                     {
                         throw Error("Infile stream bad");
                     }
                     else if (!inFileStream.eof())
                     {
-                        // format error (not possible with getline but possible with operator>>)
                         throw Error("Formatting issue");
                     }
                     else if (counter != 0)
                     {
-                        throw Error("File reached EOF with partially read student. Check file for integrity.\n");
+                        throw Error("File reached EOF with "
+                                    "partially read student. "
+                                    "Check file for integrity.\n");
                     }
-                    
                 }
-                
             }
             if (inFileStream.is_open())
             {
@@ -275,8 +294,8 @@ public:
             }
             else
             {
-                cout << "ELSE:";
-                cout << "Creating new file: " << STUDENT_FILE << "...\n";
+                cout << "Creating new file: "
+                        << STUDENT_FILE << "...\n";
                 
                 std::ofstream output( STUDENT_FILE, std::ios::out);
                 if( !output.is_open() )
@@ -285,7 +304,7 @@ public:
                 }
                 else if( output.is_open() )
                 {
-                    cout << "Outfile opened success..\n";
+                    cout << "Outfile Creation Success...\n";
                     
                     output.close();
                 }
@@ -313,7 +332,9 @@ public:
                     string name, department, level;
                     int ID = 0;
                     
-                    // Faculty(string name, int ID, string level, string department): Person(name,ID, level), department(department){};
+                    // Faculty(string name, int ID, string level,
+                    // string department): Person(name,ID, level),
+                    // department(department){};
                     int counter(0);
                     string str;
                     while (getline(inFileStream, str)) {
@@ -358,7 +379,8 @@ public:
                              */
                             // get a substring without the begin and ending || delimiters
                             str = str.substr(1, str.size() - 2);
-                            DoublyLinkedList<int> *tempList = new DoublyLinkedList<int>();
+                            DoublyLinkedList<int> *tempList =
+                            new DoublyLinkedList<int>();
                             stringstream stream(str);
                             int n;
                             while(stream >> n)
@@ -376,23 +398,21 @@ public:
                             counter = 0;
                         }
                     }
-                    
                     if (inFileStream.bad())
                     {
                         throw Error("Infile stream bad...\n");
                     }
                     else if (!inFileStream.eof())
                     {
-                        // format error (not possible with getline but possible with operator>>)
                         throw Error("Formatting issue...\n");
                     }
                     else if (counter != 0)
                     {
-                        throw Error("File reached EOF with partially read Faculty. Check file for integrity...\n");
+                        throw Error("File reached EOF with partially"
+                                    " read Faculty. Check file"
+                                    " for integrity...\n");
                     }
-                    
                 }
-                
             }
             if (inFileStream.is_open())
             {
@@ -400,9 +420,7 @@ public:
             }
             else
             {
-                cout << "ELSE:";
                 cout << "Creating new file: " << FACULTY_FILE << "\n";
-                
                 std::ofstream output( FACULTY_FILE, std::ios::out);
                 if( !output.is_open() )
                 {
@@ -410,10 +428,8 @@ public:
                 }
                 else if( output.is_open() )
                 {
-                    cout << "outfile opened success";
-                    
+                    cout << "Outfile Creation Success...\n";
                     output.close();
-                    cout << "File Closed until exit";
                 }
             }
         }
@@ -512,21 +528,23 @@ private:
         int choice (-1);
         cout << "Enter a valid choice between 1 - 14 followed by <Return>: \n";
         std::string  line;
-        while(std::getline(std::cin, line))   // read a line at a time for parsing.
+        while(std::getline(std::cin, line))// read a line at a time for parsing.
         {
             std::stringstream linestream(line);
             if (!(linestream >> choice))
             {
                 // input was not a number
                 // Error message and try again
-                cout << "Enter a valid choice between 1 - 14 followed by <Return>: \n";
+                cout << "Enter a valid choice between "
+                            "1 - 14 followed by <Return>: \n";
                 continue;
             }
             if (choice < 1 || choice > 14)
             {
                 // Error out of range
                 // Message and try again
-                cout << "Enter a valid choice between 1 - 14 followed by <Return>: \n";
+                cout << "Enter a valid choice between "
+                        "1 - 14 followed by <Return>: \n";
                 continue;
             }
             char errorTest;
@@ -535,10 +553,10 @@ private:
                 // There was extra stuff on the same line.
                 // ie sobody typed 2x<enter>
                 // Error Message;
-                cout << "Enter a valid choice between 1 - 14 followed by <Return>: \n";
+                cout << "Enter a valid choice between "
+                        "1 - 14 followed by <Return>: \n";
                 continue;
             }
-            
             // it worked perfectly.
             // The value is now in input.
             // So break out of the loop.
@@ -552,7 +570,9 @@ private:
         bool found = false;
         if (!facultyTree.isEmpty() && facultyTree.contains(facID))
         {
-            DoublyLinkedList<int>* studIDs = new DoublyLinkedList<int>(facultyTree.get(facID).getStudentIDList());
+            DoublyLinkedList<int>* studIDs =
+            new DoublyLinkedList<int> (facultyTree.get(facID)
+                                       .getStudentIDList());
             if ( studIDs->findData(studID) != -1)
             {
                 found = true;
@@ -578,7 +598,7 @@ private:
         << " or -1 to abort followed by <Return>: \n";
         std::string  line;
         cin.clear();
-        while(std::getline(std::cin, line))   // read a line at a time for parsing.
+        while(std::getline(std::cin, line))// read a line at a time for parsing.
         {
             std::stringstream linestream(line);
             if (!(linestream >> ID))

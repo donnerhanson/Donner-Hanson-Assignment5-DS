@@ -21,7 +21,8 @@ class Person
 {
 public:
     explicit
-    Person(string name, int ID, string level) : name(name), ID(ID), level(level){};
+    Person(string name, int ID, string level) : name(name), ID(ID),
+                                                                level(level){};
     
     ~Person(){}
     

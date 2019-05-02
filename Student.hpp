@@ -48,24 +48,13 @@ class Student : public Person
     
 public:
     // Full Constructor
-    Student(string name, int ID, string level, string maj, int advisorID, double GPA): Person(name,ID, level), maj(maj), GPA(GPA), advisorID(advisorID){};
-    
-    
+    Student(string name, int ID, string level,
+            string maj, int advisorID, double GPA):
+                Person(name,ID, level), maj(maj), GPA(GPA),
+                    advisorID(advisorID){};
 
-    
-    Student(Student &source) : Person(source.getName(), source.getID(), source.getLevel())
-    {
-        this->maj = source.maj;
-        this->GPA= source.GPA;
-        this->advisorID = source.advisorID;
-    }
-    Student(Student* &source) : Person(source->getName(), source->getID(), source->getLevel())
-    {
-        this->maj = source->maj;
-        this->GPA= source->GPA;
-        this->advisorID = source->advisorID;
-    }
-    Student(Student const &source) : Person(source.getName(), source.getID(), source.getLevel())
+    Student(Student const &source) :
+    Person(source.getName(), source.getID(), source.getLevel())
     {
         this->maj = source.maj;
         this->GPA= source.GPA;

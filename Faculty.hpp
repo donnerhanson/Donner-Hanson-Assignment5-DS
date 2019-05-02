@@ -54,25 +54,20 @@ public:
     Faculty(string name, int ID, string level): Person (name,ID, level){};
     
     // Full Constructor
-    Faculty(string name, int ID, string level, string department, DoublyLinkedList<int>studentIDList): Person(name,ID, level), department(department), studentIDList(studentIDList){};
+    Faculty(string name, int ID, string level, string department, DoublyLinkedList<int>studentIDList):
+                    Person(name,ID, level), department(department),
+                        studentIDList(studentIDList){};
     // Constructor w/o List
-    Faculty(string name, int ID, string level, string department): Person(name,ID, level), department(department){};
-    
-    
-    Faculty(Faculty &source) : Person(source.getName(), source.getID(), source.getLevel()), studentIDList (source.studentIDList)
-    {
-        this->department = source.department;
-    }
-    Faculty(Faculty* &source) : Person(source->getName(), source->getID(), source->getLevel())
-    {
-        this->department = source->department;
-        this->studentIDList = source->studentIDList;
-    }
-    Faculty(Faculty const &source) : Person(source.getName(), source.getID(), source.getLevel())
+    Faculty(string name, int ID, string level, string department):
+                    Person(name,ID, level), department(department){};
+ 
+    Faculty(Faculty const &source) : Person(source.getName(),
+                                            source.getID(), source.getLevel())
     {
         department = source.department;
         
-        DoublyLinkedList <int> *temp = new DoublyLinkedList<int>(source.studentIDList);
+        DoublyLinkedList <int> *temp =
+                new DoublyLinkedList<int>(source.studentIDList);
         
         studentIDList = *temp;
     }
