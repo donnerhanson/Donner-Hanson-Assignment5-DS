@@ -86,16 +86,34 @@ public:
     
     
     // copy constructor
-    //https://stackoverflow.com/questions/13668252/how-do-you-perform-a-deep-copy-on-a-doubly-linked-list
+    //https://stackoverflow.com/questions/36051225/copy-constructor-of-a-doubly-linked-list-c
     DoublyLinkedList(const DoublyLinkedList<U> &source):
-    front(0), back(0), size(source.size)
+    front(0), back(0), size(0)
     {
-        if(source.front) {
-            this->front = new Node<U>(*source.front);
-            // find last item
-            back = front;
-            while(back->next)
-                back = back->next;
+        if(source.front != nullptr)
+        {
+            Node<U>* temp = (source.front);
+            
+            while(temp != nullptr)
+            {
+                insertFront(temp->getData());
+                temp = temp->next;
+            }
+        }
+        
+    }
+    DoublyLinkedList(const DoublyLinkedList<U> *&source):
+    front(0), back(0), size(source->size)
+    {
+        if(source->front != nullptr)
+        {
+            Node<U>* temp = (source->front);
+
+                while(temp != nullptr)
+                {
+                    temp = temp->next;
+                    insertFront(temp->getData());
+                }
         }
         
     }
