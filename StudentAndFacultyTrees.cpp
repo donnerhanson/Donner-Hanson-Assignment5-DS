@@ -721,10 +721,11 @@ void StudentAndFacultyTrees::AddFacultyMember()
     
     // ============================================//
     
-    Faculty *temp = new Faculty(name, ID, occupation, department);
     if (!facultyTree.contains(ID))
     {
         // SAVE
+        Faculty *temp = new Faculty(name, ID, occupation, department);
+
         currUndo.SaveState(studentTree, facultyTree);
         
         facultyTree.insert(*temp);
@@ -778,6 +779,7 @@ void StudentAndFacultyTrees::DeleteFacultyMember(int IDnum)
                     --DLLsize;
                     
                 }
+                delete studIDs;
                 
             }
         }

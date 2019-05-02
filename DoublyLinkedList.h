@@ -102,21 +102,6 @@ public:
         }
         
     }
-    DoublyLinkedList(const DoublyLinkedList<U> *&source):
-    front(0), back(0), size(source->size)
-    {
-        if(source->front != nullptr)
-        {
-            Node<U>* temp = (source->front);
-
-                while(temp != nullptr)
-                {
-                    temp = temp->next;
-                    insertFront(temp->getData());
-                }
-        }
-        
-    }
 
     
     void insertFront(U data)

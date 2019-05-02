@@ -72,7 +72,8 @@ public:
             root = NULL;
         else
         {
-            TreeNode<U> * copy = source.root;
+            TreeNode<U> * copy;
+             copy = source.root;
             root = copyTree(root, copy);
         }
         
