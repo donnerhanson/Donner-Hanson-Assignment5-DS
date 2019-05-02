@@ -11,8 +11,6 @@
 // Instructor  : Rene German
 // Description : Bulk of the program
 /*
-
- 
  Offer choices
  1. Print all students and their information (sorted by ascending id #)
  2. Print all faculty and their information (sorted by ascending id #)
@@ -50,6 +48,20 @@ const string FUNCTION_OPTIONS = "1. Print all students and their information (so
 const string NO_ADVISORS = "\nNo current Advisors\n";
 const string NO_STUDENTS = "\nNo current Students\n";
 const string AFFECT_REFERENCES_ADV = "\nThis operation may remove references within Advisor tree...\n";
+
+const string ERROR_OUTFILE = "*** error: could not open output file\n";
+const string OPENING_OUT = "Opening File To Overwrite: \n";
+
+const string SAVED = "Save success...\n";
+
+const string ADV_ID = "Advisor ID - ";
+const string STUD_ID = "Student ID -";
+
+const string CONT = "Continue?... (Y/N): ";
+
+const string DNE = " does not exist...\n";
+
+const string INV_ENTRY = "Invalid Entry...\n";
 
 void getEnter()
 {
@@ -152,7 +164,7 @@ void StudentAndFacultyTrees::ChooseFunction()
                         if (facultyTree.contains(IDnum))
                             FindAndDisplayAdvisorsStudents(IDnum);
                         else
-                            cout << "\nFaculty Member Does Not Exist\n\n";
+                            cout << "\nFaculty Member" << DNE;
                         
                         
                     }
@@ -179,31 +191,31 @@ void StudentAndFacultyTrees::ChooseFunction()
                     if (!facultyTree.isEmpty())
                     {
                         int IDnum;
-                        cout << "\nThis operation may remove references within Advisor tree...\n";
+                        cout << AFFECT_REFERENCES_ADV;
                         
                         char yesNo = '~';
                         while (yesNo != 'Y' && yesNo != 'y' && yesNo != 'N' && yesNo != 'n')
                         {
-                            cout << "Continue?... (Y/N): ";
+                            cout << CONT;
                             cin >> yesNo;
                             cin.clear();
                             // ignore any letters and whitespace after first in stream
                             cin.ignore(numeric_limits<streamsize>::max(),'\n');
                             if (yesNo == 'Y'||yesNo == 'y')
                             {
-                                cout << "Student ID - ";
+                                cout << STUD_ID;
                                 IDnum = EnterID();
                                 int count = 0;
                                 char cont = '~';
                                 while (!studentTree.contains(IDnum))
                                 {
-                                    cout << "Student ID - " << IDnum << " does not exist\n";
+                                    cout << STUD_ID << IDnum << DNE;
                                     
                                     
                                     while (cont != 'Y' && cont != 'y' && cont != 'N' && cont != 'n')
                                     {
                                         
-                                        cout << "Continue?... (Y/N): ";
+                                        cout << CONT;
                                         
                                         cin >> cont;
                                         cin.clear();
@@ -249,8 +261,7 @@ void StudentAndFacultyTrees::ChooseFunction()
                         if (!facultyTree.isOnlyOneObject())
                         {
                             int IDnum= -10;
-                            cout << "Replacement ";
-                            cout << "Faculty ID - ";
+                            cout << ADV_ID << "TO DELETE - ";
                             while (!facultyTree.contains(IDnum))
                             {
                                 if (IDnum == -1)
@@ -286,25 +297,25 @@ void StudentAndFacultyTrees::ChooseFunction()
                         if (!studentTree.isEmpty())
                         {
                             int studentID = 0, advisorID = 0;
-                            cout << "Advisor ID - ";
+                            cout << ADV_ID;
                             advisorID = EnterID();
                             while (!facultyTree.contains(advisorID))
                             {
-                                cout << "Advisor does not exist...\n";
-                                cout << "Advisor ID - ";
+                                cout << "Advisor" << DNE;
+                                cout << ADV_ID;
                                 advisorID = EnterID();
                             }
-                            cout << "Student ID - ";
+                            cout << STUD_ID;
                             studentID = EnterID();
                             while (!studentTree.contains(studentID))
                             {
-                                cout << "Student Does Not Exist...\n";
-                                cout << "Student ID - ";
+                                cout << "Student" << DNE;
+                                cout << STUD_ID;
                                 studentID = EnterID();
                             }
                             if (!studentTree.contains(studentID))
                             {
-                                cout << "Student does not exist...\nOperation aborted\n";
+                                cout << "Student" << DNE << "Operation aborted\n";
                                 break;
                             }
                             currUndo.SaveState(studentTree, facultyTree);
@@ -335,7 +346,7 @@ void StudentAndFacultyTrees::ChooseFunction()
                             char yesNo = '~';
                             while (yesNo != 'Y' && yesNo != 'y' && yesNo != 'N' && yesNo != 'n')
                             {
-                                cout << "Continue?... (Y/N): ";
+                                cout << CONT;
                                 cin >> yesNo;
                                 cin.clear();
                                 // ignore any letters and whitespace after first in stream
@@ -343,20 +354,20 @@ void StudentAndFacultyTrees::ChooseFunction()
                                 if (yesNo == 'Y'||yesNo == 'y')
                                 {
                                     int studentID = 0, advisorID = 0;
-                                    cout << "Advisor ID - ";
+                                    cout << ADV_ID;
                                     advisorID = EnterID();
                                     while (!facultyTree.contains(advisorID))
                                     {
-                                        cout << "Advisor does not exist...\n";
-                                        cout << "Advisor ID -";
+                                        cout << "Advisor" << DNE;
+                                        cout << ADV_ID;
                                         advisorID = EnterID();
                                     }
-                                    cout << "Student ID - ";
+                                    cout << STUD_ID;
                                     studentID = EnterID();
                                     while (!studentTree.contains(studentID))
                                     {
-                                        cout << "Student Does Not Exist...\n";
-                                        cout << "Student ID -";
+                                        cout << "Student" << DNE;
+                                        cout << STUD_ID;
                                         advisorID = EnterID();
                                     }
                                     // Will SAVE within function if found
@@ -492,12 +503,12 @@ void StudentAndFacultyTrees::AddStudent()
     
     // Full Constructor Student(string name, int ID, string level, string major, int advisorID, double GPA)
     string str;
-    cout << "Student ID - ";
+    cout << STUD_ID;
     ID = EnterID();
     while (studentTree.contains(ID))
     {
         cout << "Student ID currently in use\n";
-        cout << "Student ID - ";
+        cout << STUD_ID;
         ID = EnterID();
         cin.clear();
     }
@@ -528,7 +539,7 @@ void StudentAndFacultyTrees::AddStudent()
         }
     }
     
-    cout << "Advisor ID - ";
+    cout << ADV_ID;
     advisorID = EnterID();
     cin.clear();
     while (!(facultyTree.contains(advisorID)))
@@ -559,8 +570,6 @@ void StudentAndFacultyTrees::AddStudent()
         // Faculty member exists and studentTree does not contain ID and there is no duplicate
         else if (!facultyTree.get(advisorID).ContainsStudent(ID) && !studentTree.contains(ID) && !(facultyTree.get(advisorID).getStudentIDList().findDuplicateData(ID) > 0))
         {
-            
-            
             // create an advisor copy
             Faculty* updatedNext = new Faculty(facultyTree.get(advisorID));
             // update advisors list
@@ -683,14 +692,12 @@ void StudentAndFacultyTrees::DeleteStudent(int IDnum)
 //9. Add a new faculty member
 void StudentAndFacultyTrees::AddFacultyMember()
 {
-    
-    
     string name, occupation, department;
     int ID;
     
     // Full Constructor Student(string name, int ID, string level, string major, int advisorID, double GPA)
     string str;
-    cout << "Advisor ID - ";
+    cout << ADV_ID;
     ID = EnterID();
     cin.clear();
     while (facultyTree.contains(ID))
@@ -749,11 +756,11 @@ void StudentAndFacultyTrees::DeleteFacultyMember(int IDnum)
         if (facultyTree.get(IDnum).getStudentIDList().getSize() > 0)
         {
             // get confirmation
-            cout << "this operation will affect students.\n";
+            cout << "This operation will affect students.\n";
             
             while (replaceAdvisorID != -1)
             {
-                
+                cout << "Replacement AdvisorID...\n";
                 replaceAdvisorID = EnterIDOrAbort();
                 
                 if (replaceAdvisorID >= 1)
@@ -903,33 +910,33 @@ void StudentAndFacultyTrees::RollBack()
 //14. Exit - save data to file
 void StudentAndFacultyTrees::Exit()
 {
-    cout << "Opening File To Overwrite: \n" << FACULTY_FILE << "\n";
+    cout << OPENING_OUT << FACULTY_FILE << "\n";
     
     std::ofstream outputFac(FACULTY_FILE, std::ios::out);
     if(!outputFac.is_open())
     {
-        cout << "*** error: could not open output file\n";
+        throw Error(ERROR_OUTFILE);
     }
     else if(outputFac.is_open())
     {
-        cout << "outfile opened success\n";
         outputFac << facultyTree.TreeToString();
         outputFac.close();
+        cout << SAVED;
     }
     // OVERWRITE OLD FILE WITH NEW
-    cout << "Opening File To Overwrite: \n" << STUDENT_FILE << "\n";
+    cout << OPENING_OUT << STUDENT_FILE << "\n";
     
     std::ofstream outputStud(STUDENT_FILE, std::ios::out);
     if(!outputStud.is_open())
     {
-        cout << "*** error: could not open output file\n";
+        throw Error(ERROR_OUTFILE);
     }
     else if(outputStud.is_open())
     {
         
         outputStud << studentTree.TreeToString();
-        cout << "Save success\n";
         outputStud.close();
+        cout << SAVED;
     }
 }
 
