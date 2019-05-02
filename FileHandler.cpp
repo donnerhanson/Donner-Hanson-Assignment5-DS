@@ -1,12 +1,12 @@
 //================================================================
 // Author      : Donner Hanson
-// Date        : 04/09/2019
+// Date        : 05/01/2019
 // Email       : hanso127@mail.chapman.edu
 // Course      : Data Structures and Algorithms
 // Course #    : CPSC-350-2
-// Project Name: Registrar Queue Analysis
+// Project Name: Student Faculty Database
 // File Name   : FileHandler.cpp
-// Assignment  : Assignment 4
+// Assignment  : Assignment 5
 // Version     : 0.0
 // Instructor  : Rene German
 // Description : functions to open/close file in read safely

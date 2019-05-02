@@ -1,10 +1,16 @@
-//
-//  Faculty.hpp
-//  Assignment_5_DS
-//
-//  Created by Donner Hanson on 4/22/19.
-//  Copyright © 2019 Donner Hanson. All rights reserved.
-//
+//================================================================
+// Author      : Donner Hanson
+// Date        : 05/01/2019
+// Email       : hanso127@mail.chapman.edu
+// Course      : Data Structures and Algorithms
+// Course #    : CPSC-350-2
+// Project Name: Student Faculty Database
+// File Name   : Faculty.hpp
+// Assignment  : Assignment 5
+// Version     : 0.0
+// Instructor  : Rene German
+// Description : Faculty class
+//================================================================
 
 #ifndef Faculty_hpp
 #define Faculty_hpp
@@ -101,9 +107,7 @@ public:
     bool ContainsStudent(int studIDnum) const
     {
         // returns -1 if not in list
-        if(!studentIDList.isEmpty())
-            return (studentIDList.findData(studIDnum) >= 0);
-        return -1;
+        return (studentIDList.findData(studIDnum) >= 0);
     }
     
     /* ADD */
@@ -214,3 +218,5 @@ bool operator< (const Faculty &c1, const int &c2);
 ostream& operator << (ostream& out, const Faculty& fac);
 
 #endif /* Faculty_hpp */
+
+

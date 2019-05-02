@@ -1,10 +1,17 @@
-//
-//  GenStack.hpp
-//  GenStack
-//
-//  Created by Donner Hanson on 2/21/19.
-//  Copyright © 2019 Donner Hanson. All rights reserved.
-//
+//================================================================
+// Author      : Donner Hanson
+// Date        : 05/01/2019
+// Email       : hanso127@mail.chapman.edu
+// Course      : Data Structures and Algorithms
+// Course #    : CPSC-350-2
+// Project Name: Student Faculty Database
+// File Name   : GenStack.hpp
+// Assignment  : Assignment 5
+// Version     : 0.0
+// Instructor  : Rene German
+// Description : Templated stack with specialized functions for
+//               Students and Faculty
+//================================================================
 
 #ifndef GenStack_hpp
 #define GenStack_hpp

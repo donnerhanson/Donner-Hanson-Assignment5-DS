@@ -1,10 +1,18 @@
-//
-//  UndoStates.h
-//  Assignment_5_DS
-//
-//  Created by Donner Hanson on 4/24/19.
-//  Copyright © 2019 Donner Hanson. All rights reserved.
-//
+//================================================================
+// Author      : Donner Hanson
+// Date        : 05/01/2019
+// Email       : hanso127@mail.chapman.edu
+// Course      : Data Structures and Algorithms
+// Course #    : CPSC-350-2
+// Project Name: Student Faculty Database
+// File Name   : UndoStates.h
+// Assignment  : Assignment 5
+// Version     : 0.0
+// Instructor  : Rene German
+// Description : track any changes made to BSTs in the data base and
+//               store the copies of the BSTs. Return copies when
+//               called
+//================================================================
 
 #ifndef UndoStates_h
 #define UndoStates_h
@@ -34,38 +42,14 @@ public:
         ;
     }
 
-    bool CanUndo()
-    {
-        if (states.top() == None)
-            cout << "\nNothing to Undo...\n";
-        return states.top() != None;
-    }
+    bool CanUndo();
     
-    void SaveState(BST<Student> studCopy, BST<Faculty> facCopy)
-    {
-        BST<Student> tempStud(studCopy);
-        studentTreeCopy.push(tempStud);
-        facultyTreeCopy.push(facCopy);
-        states.push(ChangedState);
-    }
+    void SaveState(BST<Student> studCopy, BST<Faculty> facCopy);
     
-    int GetLastAction()
-    {
-        return states.top();
-    }
-    BST<Student> GetLastStudentTree()
-    {
-        return studentTreeCopy.pop();
-    }
-    BST<Faculty> GetLastFacultyTree()
-    {
-        
-        return facultyTreeCopy.pop();
-    }
-    void removeLastState()
-    {
-        states.pop();
-    }
+    int GetLastAction();
+    BST<Student> GetLastStudentTree();
+    BST<Faculty> GetLastFacultyTree();
+    void removeLastState();
     
 
 private:
